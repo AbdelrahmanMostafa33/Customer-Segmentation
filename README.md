@@ -111,14 +111,12 @@ Dataset: [Mall Customers -- Kaggle](https://www.kaggle.com/datasets/shwetabh123/
 ```bash
 git clone https://github.com/AbdooMatrix/Customer-Segmentation.git
 cd Customer-Segmentation
-
 ```
 
 ### 2\. Create a Virtual Environment
 
 ```
 python -m venv venv
-
 ```
 
 Activate it:
@@ -127,28 +125,24 @@ Activate it:
 
     ```
     venv\Scripts\activate
-
     ```
 
 -   **Mac/Linux:**
 
     ```
     source venv/bin/activate
-
     ```
 
 ### 3\. Install Dependencies
 
 ```
 pip install -r requirements.txt
-
 ```
 
 ### 4\. Run the Project
 
 ```
 python src/main.py
-
 ```
 
 This will:
