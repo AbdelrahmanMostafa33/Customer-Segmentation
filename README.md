@@ -27,7 +27,7 @@ It explores shopping behaviors to identify distinct customer groups and visualiz
 
 ## 📂 Dataset
 
-Dataset: [Mall Customers -- Kaggle](https://www.kaggle.com/datasets/shwetabh123/mall-customers)
+Dataset: [Mall Customers -- Kaggle](https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python)
 
 **Features include:**
 - `CustomerID` --- unique identifier
