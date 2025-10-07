@@ -192,7 +192,6 @@ Customer-Segmentation/
 │
 ├── requirements.txt
 └── README.md
-
 ```
 
 * * * * *
