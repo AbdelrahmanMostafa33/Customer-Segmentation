@@ -326,14 +326,24 @@ print(f"Silhouette Score for k={optimal_k}: {sil_score:.3f}\n")
 print('Cluster counts:')
 print(df['Cluster'].value_counts().sort_index())
 
-# Cluster profile (after dropping non-feature columns)
-df_temp = df.drop(columns=['CustomerID', 'Gender', 'Age'])
-cluster_profile = df_temp.groupby('Cluster').mean()
+# Drop non-feature columns for profiling
+df.drop(columns=['CustomerID', 'Gender'], inplace=True)
+cluster_profile = df.groupby('Cluster').mean()
 print('\nCluster profile (averages):')
 print(cluster_profile)
 
+# Cluster names
+cluster_names = {
+    0: "Average Spenders",
+    1: "Luxury Shoppers",
+    2: "Careful Rich",
+    3: "Low Budget",
+    4: "High Spenders"
+}
+df["Cluster_Name"] = df["Cluster"].map(cluster_names)
+
 # ========== 9. Average Spending per Cluster ==========
-avg_spending = df_temp.groupby('Cluster')['Spending Score (1-100)'].mean().sort_index()
+avg_spending = df.groupby('Cluster')['Spending Score (1-100)'].mean().sort_index()
 avg_spending.plot(kind='bar', figsize=(6,4))
 plt.title('Average Spending Score per Cluster')
 plt.xlabel('Cluster')
@@ -343,7 +353,7 @@ plt.show()
 # ========== 10. Visualize KMeans Clusters ==========
 palette = sns.color_palette("Set1", n_colors=kmeans.n_clusters)
 plt.figure(figsize=(8,6))
-# Plot points colored by cluster
+# Plot points for each cluster with names in legend
 for i in range(kmeans.n_clusters):
     plt.scatter(
         X.loc[df['Cluster'] == i, 'Annual Income (k$)'],
@@ -352,7 +362,7 @@ for i in range(kmeans.n_clusters):
         c=[palette[i]],
         edgecolor='black',
         alpha=0.7,
-        label=f'Cluster {i}'
+        label=cluster_names[i]
     )
 # Centroids (in original scale)
 centroids_orig = scaler.inverse_transform(kmeans.cluster_centers_)
@@ -369,7 +379,7 @@ plt.scatter(
 plt.xlabel('Annual Income (k$)', fontsize=11)
 plt.ylabel('Spending Score (1-100)', fontsize=11)
 plt.title(f'KMeans Clusters (k={kmeans.n_clusters})', fontsize=14, pad=10)
-plt.legend(title='Clusters', fontsize=9)
+plt.legend(title='Customer Segments', fontsize=9)
 plt.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
