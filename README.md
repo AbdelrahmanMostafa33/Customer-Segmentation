@@ -203,5 +203,3 @@ Customer-Segmentation/
 The project successfully segmented mall customers into **five meaningful groups** based on their income and spending habits.\
 K-Means clustering provided clear, actionable insights that can guide **targeted marketing strategies** and **customer retention efforts**.\
 This demonstrates the value of unsupervised learning for **data-driven decision-making** in retail.
-
-```
